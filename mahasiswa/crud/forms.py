@@ -18,5 +18,10 @@ class BiodataMhs(forms.ModelForm):
             },
             'alamat':{
                 'required': "Anda harus mengisi form Alamat"
+            },            
+            'jenisk':{
+                'required': "Anda harus mengisi form Jenis kelamin"
             }
+            
         }
+   

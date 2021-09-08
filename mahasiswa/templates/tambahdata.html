@@ -31,26 +31,61 @@
         {% endif %}
 		<form method="POST">
             {% csrf_token %}  
-            <table style="margin:20px auto;">
+            <table style="margin:20px auto; width: 35%;">
                 <tr>
-                    <td>NPM</td>
+                    <td>NPM </td>
                     <td>
                     <input type="number" name="npm" value=""></td>
                 </tr>
                 <tr>
-                    <td>Nama</td>
+                    <td>Nama </td>
                     <td>
                     <input type="text" name="nama" value=""></td>
                 </tr>
                 <tr>
-                    <td>Tanggal lahir</td>
+                    <td>Tanggal lahir </td>
                     <td>
                     <input type="date" name="tgl_lahir" value=""></td>
                 </tr>
                 <tr>
-                    <td>Alamat</td>
+                    <td>Alamat </td>
                     <td>
                     <input type="text" name="alamat" value=""></td>
+                </tr>
+                <tr>
+                    <td>Jenis Kelamin </td>
+                    <td>
+                        <input type="radio" id="laki" name="jenisk" value="Laki-laki">
+                        <label for="Laki-laki">Laki-laki</label>
+                        <input type="radio" id="perempuan" name="jenisk" value="Perempuan">
+                        <label for="Perempuan">Perempuan</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pekerjaan </td>
+                    <td>
+                        <select name="selectkrj" id="selectkrj">
+                            {% for item in krj %}
+                                <option val="{{ item.nama }}"> {{ item.nama }} </option>	
+                            {% endfor %}
+                            </select>	</td>
+                </tr>
+                <tr>
+                    <td>Unit </td>
+                    <td>
+                        <select name="selectkrj" id="selectkrj">
+                            {% for item in krj %}
+                                <option val="{{ item.nama }}"> {{ item.nama }} </option>	
+                            {% endfor %}
+                        </select>	
+                    </td>
+                </tr>
+                <tr>
+                    <td>Foto </td>
+                    <td>
+                        <input type="file"
+                        </select>	
+                    </td>
                 </tr>
                     <td></td>
                     <td><input type="button" onclick = "window.history.back()" value="<< kembali" class="btn btn-dark"></td>

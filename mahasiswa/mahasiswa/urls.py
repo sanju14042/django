@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from crud import views as crudviews
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 from . import views
 
@@ -25,6 +29,8 @@ urlpatterns = [
     path('tambah/',crudviews.tambah),
     path('editdata/<int:npm>',crudviews.edit),
     path('hapusdata/<int:npm>',crudviews.hapus),
+    path('tambahdata/',crudviews.tambahdd),
     path('',crudviews.index),
     
-]
+]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
