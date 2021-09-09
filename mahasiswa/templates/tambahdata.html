@@ -29,7 +29,7 @@
                 </div>
             {% endfor %}
         {% endif %}
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data">
             {% csrf_token %}  
             <table style="margin:20px auto; width: 35%;">
                 <tr>
@@ -83,8 +83,8 @@
                 <tr>
                     <td>Foto </td>
                     <td>
-                        <input type="file"
-                        </select>	
+                        <input type="file" name="foto" value="">
+                        
                     </td>
                 </tr>
                     <td></td>

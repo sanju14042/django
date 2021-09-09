@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>{% block title %}Django Chained Dropdown List - Select Box using jQuery Ajax{% endblock %}</title>
+</head>
+<body>
+
+  {% block content %} {% endblock %}
+ 
+    </div>
+    </div>
+<style>
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+</style>
+</body>
+</html>

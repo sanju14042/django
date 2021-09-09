@@ -28,6 +28,7 @@ class Data_mahasiswa(models.Model):
     jenisk = models.CharField(max_length=12, blank=True, null=True)
     pekerjaan = models.ForeignKey(Pekerjaan, on_delete=models.SET_NULL, blank=True, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, blank=True, null=True)
+    foto = models.ImageField(upload_to='images/', blank=True, null=True)
 
     class Meta:
         db_table = 'dt_mahasiswa'

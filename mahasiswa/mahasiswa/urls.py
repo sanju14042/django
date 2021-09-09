@@ -14,10 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from crud import views as crudviews
+from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import *
+
 
 
 
@@ -29,8 +32,18 @@ urlpatterns = [
     path('tambah/',crudviews.tambah),
     path('editdata/<int:npm>',crudviews.edit),
     path('hapusdata/<int:npm>',crudviews.hapus),
-    path('tambahdata/',crudviews.tambahdd),
+    path('dropdown/',crudviews.Data_mahasiswaListView.as_view(), name='Data_mahasiswa_changelist'),
+    path('tambahdata/',crudviews.Data_mahasiswaCreateView.as_view(), name='Data_mahasiswa_add'),
+    path('<int:pk>/', crudviews.Data_mahasiswaUpdateView.as_view(), name='Data_mahasiswa_change'),
+    path('ajax/load-units/', crudviews.load_units, name='ajax_load_units'),
+    # path('foto_upload', crudviews.foto_view, name = 'foto_upload'),
+    # path('success', crudviews.success, name = 'success'),
     path('',crudviews.index),
     
-]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 

@@ -14,7 +14,7 @@
 	<br/>
 	<div class="container">
         <a href="/tambah" class="btn btn-primary">Add New Record</a>
-        <a href="/tambahdata" class="btn btn-danger">DropDown</a>
+        <a href="/tambahdata" class="btn btn-secondary">DropDown</a>
 
         <br>
         <br>
@@ -26,6 +26,7 @@
 					<th>Tanggal Lahir</th>
 					<th>Alamat</th>
                     <th>Jenis Kelamin</th>
+                    <th>Foto</th>
                     <th>Aksi</th>
 				</tr>
 			</thead>
@@ -37,6 +38,11 @@
 					<td>{{mahasiswa.tgl_lahir}}</td>
 					<td>{{mahasiswa.alamat}}</td>
                     <td>{{mahasiswa.jenisk}}</td>
+                    <td>
+                        {{mahasiswa.foto}}
+                        <!-- {% load static %} -->
+                        <img src="{% static mahasiswa.foto %}" class="img-responsive">
+                    </td>
                     <td>
                         <input type="button" class="btn btn-warning" onclick="location.href='/editdata/{{mahasiswa.npm}}';" value=" Edit" />
                         <a type="button" class="btn btn-danger" href="/hapusdata/{{mahasiswa.npm}}" onclick="return confirm('Anda yakin mau menghapus data ini?');">Delete</a>

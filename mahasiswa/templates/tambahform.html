@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+{% load widget_tweaks %}
+  <h2>Drop Down</h2>
+ 
+  <form method="post" id="formmhs" data-cities-url="{% url 'ajax_load_units' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      <!-- {{ form.as_table }} -->
+    </table>
+ {% for field in form.visible_fields %} 
+    <div class="form-group">
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {{ field|add_class:'form-control' }}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+   </div>
+ {% endfor %}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'Data_mahasiswa_changelist' %}">Home</a>
+  </form>
+ 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_pekerjaan").change(function () {
+      var url = $("#formmhs").attr("data-units-url");
+      var pekerjaanId = $(this).val();
+ 
+      $.ajax({
+        url: url,
+        data: {
+          'pekerjaan': pekerjaanId
+        },
+        success: function (data) {
+          $("#id_unit").html(data);
+        }
+      });
+ 
+    });
+  </script>
+  <input type="button" onclick = "window.history.back()" value="<< kembali" class="btn btn-dark"></td>
+ 
+{% endblock %}

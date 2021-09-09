@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+ 
+{% block title %}Django Chained Dropdown List - Select Box using jQuery Ajax {% endblock %}
+ 
+{% block content %}
+  <table class="table table-striped custab">
+    <thead>
+  <a href="{% url 'Data_mahasiswa_add' %}" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Person</a>
+        <tr>
+        <th>Nama</th>
+        <th>tanggal lahir</th>
+        <th>Alamat</th>
+        <th>Jenis Kelamin</th>
+        <th>Pekerjaan</th>
+        <th>Unit</th>
+  <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for Data_mahasiswa in people %}
+        <tr>
+          <td><a href="{% url 'Data_mahasiswa_change' Data_mahasiswa.pk %}">{{ Data_mahasiswa.name }}</a></td>
+          <td>{{ Data_mahasiswa.birthdate }}</td>
+          <td>{{ Data_mahasiswa.country.name }}</td>
+          <td>{{ Data_mahasiswa.city.name }}</td>
+    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No Data_mahasiswa in the database. <a href="{% url 'Data_mahasiswa_add' %}">Add the first Data mahasiswa</a>.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
