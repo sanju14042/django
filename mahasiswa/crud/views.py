@@ -1,3 +1,5 @@
+import os
+from django.core.checks import messages
 from django.forms.widgets import Media
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,7 +11,6 @@ from .forms import BiodataMhs, Data_mahasiswaForm
 # Create your views here.
 
 def index(request):
- if request.method == 'GET':
     hasil = Data_mahasiswa.objects.all()
     print(hasil) 
     data = {
@@ -18,13 +19,15 @@ def index(request):
     return render(request,"index.html",data)  
 
 def tambah(request):
+    kerja = Pekerjaan.objects.all()
+    unitobj = Unit.objects.all()
     form = BiodataMhs(request.POST or None, request.FILES or None)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             return redirect("/")
         pass
-    return render(request,"tambahdata.html",{'form': form})
+    return render(request,"tambahdata.html",{'form': form, 'datakerja': kerja,'dataunit': unitobj})
 
 # def edit(request, npm):
 #     data = Data_mahasiswa.objects.get(npm=npm)
@@ -34,12 +37,18 @@ def edit(request, npm):
     obj = get_object_or_404(Data_mahasiswa, npm = npm) 
   
     form = BiodataMhs(request.POST or None, instance = obj)
+    if len(request.FILES) !=0:
+        if len(obj.foto) > 0:
+            os.remove(obj.foto.path)
+        obj.foto = request.FILES['foto']
+    obj.save()
     if form.is_valid(): 
         form.save() 
         return redirect("/")  
-    data = {
-        'mhs':obj,
-    }
+    #2 data = {
+    #2     'mhs':obj,
+    #2 }
+    data = {'mhs':obj}
     return render(request,'editdata.html',data)
 
 def hapus(request, npm):
@@ -47,10 +56,10 @@ def hapus(request, npm):
     dt.delete()
     return redirect("/")
 
-# def tambahdd(request):
-#     kerja = Pekerjaan.objects.all()
-#     print(kerja)
-#     return render(request, 'tambahdd.html', {'kerja': kerja})
+def tambahdd(request):
+    kerja = Pekerjaan.objects.all()
+    unitobj = Unit.objects.all()
+    return render(request, 'tambahdrop.html', {'datakerja': kerja,'dataunit': unitobj})
 
 # def getdetails(request):
 #     kerja_name = request.GET['krj']

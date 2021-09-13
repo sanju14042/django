@@ -29,21 +29,21 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', views.about),
-    path('tambah/',crudviews.tambah),
+    path('tambah/',crudviews.tambah, name='add-data'),
     path('editdata/<int:npm>',crudviews.edit),
     path('hapusdata/<int:npm>',crudviews.hapus),
     path('dropdown/',crudviews.Data_mahasiswaListView.as_view(), name='Data_mahasiswa_changelist'),
     path('tambahdata/',crudviews.Data_mahasiswaCreateView.as_view(), name='Data_mahasiswa_add'),
     path('<int:pk>/', crudviews.Data_mahasiswaUpdateView.as_view(), name='Data_mahasiswa_change'),
     path('ajax/load-units/', crudviews.load_units, name='ajax_load_units'),
-    # path('foto_upload', crudviews.foto_view, name = 'foto_upload'),
-    # path('success', crudviews.success, name = 'success'),
+    path('drop/', crudviews.tambahdd),
     path('',crudviews.index),
     
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 
+  

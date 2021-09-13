@@ -4,17 +4,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-
 </head>
 <body>
 	<center>
-        <h1>Membuat CRUD sederhana menggunakan framework Django</h1>
+        <h1>CRUD Django</h1>
 	</center>
 	<br/>
 	<br/>
 	<div class="container">
         <a href="/tambah" class="btn btn-primary">Add New Record</a>
-        <a href="/tambahdata" class="btn btn-secondary">DropDown</a>
+        <a href="/drop" class="btn btn-secondary">DropDown</a>
 
         <br>
         <br>
@@ -39,9 +38,8 @@
 					<td>{{mahasiswa.alamat}}</td>
                     <td>{{mahasiswa.jenisk}}</td>
                     <td>
-                        {{mahasiswa.foto}}
-                        <!-- {% load static %} -->
-                        <img src="{% static mahasiswa.foto %}" class="img-responsive">
+                        
+                        <img src="media/{{mahasiswa.foto}}" class="img-responsive" style="width:20%">
                     </td>
                     <td>
                         <input type="button" class="btn btn-warning" onclick="location.href='/editdata/{{mahasiswa.npm}}';" value=" Edit" />

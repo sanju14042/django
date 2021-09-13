@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-        <h1>Membuat CRUD sederhana menggunakan framework Django</h1>
+        <h1>CRUD Django</h1>
         <h3>Edit Data</h3>
 	</center>
 	<br/>
@@ -28,7 +28,7 @@
                 </div>
             {% endfor %}
         {% endif %}
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data">
             {% csrf_token %}  
             <table style="margin:20px auto;">
                 <tr>
@@ -42,7 +42,7 @@
                     <input type="text" name="nama" value="{{mhs.nama}}"></td>
                 </tr>
                 <tr>
-                    <td>Tanggal lahir</td>
+                    <td>Tanggal Lahir</td>
                     <td>
                     <input type="date" name="tgl_lahir" value="{{mhs.tgl_lahir|date:'Y-m-d'}}"></td>
                 </tr>
@@ -58,6 +58,16 @@
                         <label for="Laki-laki">Laki-laki</label>
                         <input type="radio" id="perempuan" name="jenisk" value="Perempuan">
                         <label for="Perempuan">Perempuan</label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>Foto </td>
+                    <td>
+                        {% if mhs.foto %}
+                            <img src="{{ mhs.foto.url }}">
+                        {% endif %}       
+                     <input type="file" name="foto" class="form-control">
                     </td>
                 </tr>
                     <td></td>

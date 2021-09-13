@@ -9,7 +9,7 @@
 </head>
 <body>
 	<center>
-        <h1>Membuat CRUD sederhana menggunakan framework Django</h1>
+        <h1>CRUD Django</h1>
         <h3>Tambah Data</h3>
 	</center>
 	<br/>
@@ -64,20 +64,23 @@
                 <tr>
                     <td>Pekerjaan </td>
                     <td>
-                        <select name="selectkrj" id="selectkrj">
-                            {% for item in krj %}
-                                <option val="{{ item.nama }}"> {{ item.nama }} </option>	
+                        <select id="pekerjaanddl">
+                            <option disabled selected="true"> --pekerjaan-- </option>
+                            {% for pekerjaan in datakerja %}
+                            <option value="{{pekerjaan.id}}" name="Pekerjaan">{{pekerjaan.nama}}</option>
                             {% endfor %}
-                            </select>	</td>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Unit </td>
                     <td>
-                        <select name="selectkrj" id="selectkrj">
-                            {% for item in krj %}
-                                <option val="{{ item.nama }}"> {{ item.nama }} </option>	
+                        <select id="unitddl">
+                            <option disabled selected="true"> --unit-- </option>
+                            {% for unit in dataunit %}
+                            <option value="{{unit.id}}" name="Unit">{{unit.nama}}</option>
                             {% endfor %}
-                        </select>	
+                        </select>
                     </td>
                 </tr>
                 <tr>

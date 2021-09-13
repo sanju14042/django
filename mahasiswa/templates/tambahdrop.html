@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <title>Dropdown</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            var $pekerjaanvar=$("#pekerjaanddl");
+                $unitvar=$("#unitddl");
+
+                $options=$unitvar.find('option');
+                $pekerjaanvar.on('change',function()
+                {
+                    $unitvar.html($options.filter('[value="'+this.value+'"]'));
+                }).trigger('change');
+        });
+    </script> -->
+</head>
+<body>
+    <center>
+        <h1>DDL JQuery Django</h1>
+    </center>
+
+    <select id="pekerjaanddl">
+        <option disabled selected="true"> --pekerjaan-- </option>
+        {% for pekerjaan in datakerja %}
+        <option value="{{pekerjaan.id}}">{{pekerjaan.nama}}</option>
+        {% endfor %}
+    </select>
+    <select id="unitddl">
+        <option disabled selected="true"> --unit-- </option>
+        {% for unit in dataunit %}
+        <option value="{{unit.id}}">{{unit.nama}}</option>
+        {% endfor %}
+    </select>
+</body>
+</html>
