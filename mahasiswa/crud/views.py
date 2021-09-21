@@ -1,7 +1,7 @@
 import os
 from django.core.checks import messages
 from django.forms.widgets import Media
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
@@ -27,16 +27,12 @@ def tambah(request):
             form.save()
             return redirect("/")
         pass
-    return render(request,"tambahdata.html",{'form': form, 'datakerja': kerja,'dataunit': unitobj})
-
-# def edit(request, npm):
-#     data = Data_mahasiswa.objects.get(npm=npm)
-#     return render(request,'editdata.html',{'data':data})
+    return render(request,"tambahdata.html",{'form': form, "datakerja": kerja, "dataunit": unitobj})
 
 def edit(request, npm):
     obj = get_object_or_404(Data_mahasiswa, npm = npm) 
   
-    form = BiodataMhs(request.POST or None, instance = obj)
+    form = BiodataMhs(request.POST or None, request.FILES or None, instance = obj)
     if len(request.FILES) !=0:
         if len(obj.foto) > 0:
             os.remove(obj.foto.path)
@@ -59,7 +55,7 @@ def hapus(request, npm):
 def tambahdd(request):
     kerja = Pekerjaan.objects.all()
     unitobj = Unit.objects.all()
-    return render(request, 'tambahdrop.html', {'datakerja': kerja,'dataunit': unitobj})
+    return render(request, 'tambahdrop.html', {"datakerja": kerja,"dataunit": unitobj})
 
 # def getdetails(request):
 #     kerja_name = request.GET['krj']
@@ -78,29 +74,37 @@ def tambahdd(request):
 #         result_set.append({'name': unit.name})
 #     return HttpResponse(simplejson.dumps(result_set), mimetype='application/json',content_type='application/json')
 
-class Data_mahasiswaListView(ListView):
-    model = Data_mahasiswa
-    context_object_name = 'people'
-    template_name = 'listdd.html'
+# class Data_mahasiswaListView(ListView):
+#     model = Data_mahasiswa
+#     context_object_name = 'people'
+#     template_name = 'listdd.html'
  
-class Data_mahasiswaCreateView(CreateView):
-    model = Data_mahasiswa
-    form_class = Data_mahasiswaForm
-    template_name = 'tambahform.html'
-    success_url = reverse_lazy('Data_mahasiswa_changelist')
- 
- 
-class Data_mahasiswaUpdateView(UpdateView):
-    model = Data_mahasiswa
-    form_class = Data_mahasiswaForm
-    template_name = 'tambahform.html'
-    success_url = reverse_lazy('Data_mahasiswa_changelist')
+def Data_mahasiswaCreateView(request):
+    form = Data_mahasiswaForm()
+    if request.method == 'POST':
+        form = Data_mahasiswaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Data_mahasiswa_add')
+    return render(request, 'tambahdata.html', {'form': form})
  
  
+def Data_mahasiswaUpdateView(request, pk):
+    kerja = get_object_or_404(Data_mahasiswa, pk=pk)
+    form = BiodataMhs(instance=kerja)
+    if request.method == 'POST':
+        form = BiodataMhs(request.POST, instance=kerja)
+        if form.is_valid():
+            form.save()
+            return redirect('Data_mahasiswa_change', pk=pk)
+    return render(request, 'tambahdata.html', {'form': form})
+ 
+ #AJAX
 def load_units(request):
-    pekerjaan_id = request.GET.get('pekerjaan')
-    units = Unit.objects.filter(pekerjaan_id=pekerjaan_id).order_by('name')
+    pekerjaan_id = request.GET.get('pekerjaan_id')
+    units = Unit.objects.filter(pekerjaan_id=pekerjaan_id).all()
     return render(request, 'dropdown.html', {'units': units})
+    # return JsonResponse(list(units.values('id', 'name')), safe=False)
 
 # def foto_view(request):
 #     if request.method == 'POST':

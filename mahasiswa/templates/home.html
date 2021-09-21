@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<h2>DDL</h2>
+
+<form method="post" id="formmhs" data-units-url="{% url 'ajax_load_units' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_pekerjaan").change(function() {
+        const url = $("#formmhs").attr("data-units-url");
+        const pekerjaanID = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'pekerjaan_id': pekerjaanID
+            },
+            success: function (data) {
+                $("#id_unit").html(data);
+                /*
+                    lt html-data = '<option value="">---------</option>';
+                    data.foeEach(function (unit){
+                        html_data += '<option value="${unit.id}">${unit.nama}</option>'
+                    });
+                    console.log(htnl_data);
+                    $("id_unit").html(html_data);
+                */
+            }
+        });
+    });
+</script>
+</body>
+</html>

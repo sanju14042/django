@@ -8,14 +8,16 @@ class Pekerjaan(models.Model):
         return self.nama
 
     def __unicode__(self):
+
+
         return u'%s' % (self.name)
 
 class Unit(models.Model):
     nama = models.CharField(max_length=255, null=True, blank=True)
-    pekerjaan = models.ForeignKey("Pekerjaan", on_delete=models.CASCADE)
+    pekerjaan = models.ForeignKey(Pekerjaan, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.nama
 
     def __unicode__(self):
         return u'%s' % (self.name)

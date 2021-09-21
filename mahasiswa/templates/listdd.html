@@ -11,18 +11,17 @@
         <th>tanggal lahir</th>
         <th>Alamat</th>
         <th>Jenis Kelamin</th>
-        <th>Pekerjaan</th>
-        <th>Unit</th>
+
   <th class="text-center">Action</th>
       </tr>
     </thead>
     <tbody>
       {% for Data_mahasiswa in people %}
         <tr>
-          <td><a href="{% url 'Data_mahasiswa_change' Data_mahasiswa.pk %}">{{ Data_mahasiswa.name }}</a></td>
-          <td>{{ Data_mahasiswa.birthdate }}</td>
-          <td>{{ Data_mahasiswa.country.name }}</td>
-          <td>{{ Data_mahasiswa.city.name }}</td>
+          <td><a href="{% url 'Data_mahasiswa_change' Data_mahasiswa.pk %}">{{ Data_mahasiswa.nama }}</a></td>
+          <td>{{ Data_mahasiswa.tgl_lahir }}</td>
+          <td>{{ Data_mahasiswa.alamat }}</td>
+          <td>{{ Data_mahasiswa.jenisk }}</td>
     <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
         </tr>
       {% empty %}
