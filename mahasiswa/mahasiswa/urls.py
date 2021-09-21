@@ -36,6 +36,7 @@ urlpatterns = [
     path('<int:pk>/', crudviews.Data_mahasiswaUpdateView, name='Data_mahasiswa_change'),
     path('ajax/load-units/', crudviews.load_units, name='ajax_load_units'),
     path('drop/', crudviews.tambahdd),
+    path('ddl/', crudviews.ddl),
     path('',crudviews.index),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

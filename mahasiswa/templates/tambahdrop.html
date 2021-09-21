@@ -8,9 +8,10 @@
         $(document).ready(function () {
             var $pekerjaanvar = $("#pekerjaanddl");
             $unitvar = $("#unitddl");
+
             $options = $unitvar.find('option');
             $pekerjaanvar.on('change', function () {
-                $unitvar.html($options.filter('[value="' + this.value + '"]'));
+                $unitvar.html($options.filter('[value="'+this.value+'"]'));
             }).trigger('change');
         });
     </script>

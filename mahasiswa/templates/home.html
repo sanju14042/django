@@ -9,7 +9,11 @@
 
 <form method="post" id="formmhs" data-units-url="{% url 'ajax_load_units' %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    <!-- {{form.as_p}} -->
+    {{ form.pekerjaan }}
+    <br>
+    <br>
+    {{form.unit}}
     <input type="submit" value="Submit">
 </form>
 

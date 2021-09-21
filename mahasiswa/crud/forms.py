@@ -36,8 +36,8 @@ class BiodataMhs(forms.ModelForm):
                 self.fields['unit'].queryset = Unit.objects.filter(pekerjaan_id=pekerjaan_id).order_by('nama')
             except (ValueError, TypeError):
                 pass # inva;id input from the  client; ignore and fallback to empty Unit queryset
-        elif self.instance.pk:
-            self.fields['unit'].queryset = self.instance.pekerjaan.unit_set.order_by('nama')
+        # elif self.instance.pk:
+        #     self.fields['unit'].queryset = self.instance.pekerjaan.unit_set.order_by('nama')
 
 class Data_mahasiswaForm(forms.ModelForm):
     class Meta :

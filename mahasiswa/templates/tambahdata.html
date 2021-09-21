@@ -32,7 +32,7 @@
                 </div>
             {% endfor %}
         {% endif %}
-		<form method="POST" enctype="multipart/form-data">
+		<form method="POST" enctype="multipart/form-data" id="formmhs" data-units-url="{% url 'ajax_load_units' %}">
             {% csrf_token %}  
             <table style="margin:20px auto; width: 35%;">
                 <tr>
@@ -67,23 +67,25 @@
                 <tr>
                     <td>Pekerjaan </td>
                     <td>
-                        <select id="pekerjaanddl">
+                        <!-- <select id="pekerjaanddl">
                             <option disabled selected="true"> --pekerjaan-- </option>
                             {% for pekerjaan in datakerja %}
                             <option value="{{pekerjaan.id}}" name="Pekerjaan">{{pekerjaan.nama}}</option>
                             {% endfor %}
-                        </select>
+                        </select> -->
+                        {{ form.pekerjaan }}
                     </td>
                 </tr>
                 <tr>
                     <td>Unit </td>
                     <td>
-                        <select id="unitddl">
+                        <!-- <select id="unitddl">
                             <option disabled selected="true"> --unit-- </option>
                             {% for unit in dataunit %}
                             <option value="{{unit.id}}" name="Unit">{{unit.nama}}</option>
                             {% endfor %}
-                        </select>
+                        </select> -->
+                        {{ form.unit }}
                     </td>
                 </tr>
                 <tr>

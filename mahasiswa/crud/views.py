@@ -1,4 +1,5 @@
 import os
+import json as simplejson
 from django.core.checks import messages
 from django.forms.widgets import Media
 from django.http import HttpResponse, JsonResponse
@@ -57,22 +58,27 @@ def tambahdd(request):
     unitobj = Unit.objects.all()
     return render(request, 'tambahdrop.html', {"datakerja": kerja,"dataunit": unitobj})
 
-# def getdetails(request):
-#     kerja_name = request.GET['krj']
-#     print ("ajax " + str(kerja_name))
+def ddl(request):
+    pekerjaan = Pekerjaan.objects.all()
+    print(pekerjaan)
+    return render(request, 'ddl.html', {'pekerjaan': pekerjaan})
 
-#     result_set = []
-#     all_units = []
+def getdetails(request):
+    pekerjaan_nama = request.GET['krj']
+    print ("ajax " + str(pekerjaan_nama))
 
-#     answer = str(kerja_name[1:-1])
-#     selected_kerja = Pekerjaan.objects.get(name=answer)
-#     print ("selected kerja name " + str(selected_kerja))
+    result_set = []
+    all_units = []
+
+    answer = str(pekerjaan_nama[1:-1])
+    selected_pekerjaan = Pekerjaan.objects.get(nama=answer)
+    print ("selected pekerjaan name " + str(selected_pekerjaan))
     
-#     all_units = selected_kerja.unit_set.all()
-#     for unit in all_units:
-#         print ("unit name", str(unit.name))
-#         result_set.append({'name': unit.name})
-#     return HttpResponse(simplejson.dumps(result_set), mimetype='application/json',content_type='application/json')
+    all_units = selected_pekerjaan.unit_set.all()
+    for unit in all_units:
+        print ("unit nama", str(unit.nama))
+        result_set.append({'nama': unit.nama})
+    return HttpResponse(simplejson.dumps(result_set),content_type='application/json')
 
 # class Data_mahasiswaListView(ListView):
 #     model = Data_mahasiswa
