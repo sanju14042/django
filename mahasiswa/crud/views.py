@@ -45,7 +45,7 @@ def edit(request, npm):
     #2 data = {
     #2     'mhs':obj,
     #2 }
-    data = {'mhs':obj}
+    data = {'mhs':obj, 'form': form}
     return render(request,'editdata.html',data)
 
 def hapus(request, npm):
@@ -92,7 +92,7 @@ def Data_mahasiswaCreateView(request):
         if form.is_valid():
             form.save()
             return redirect('Data_mahasiswa_add')
-    return render(request, 'tambahdata.html', {'form': form})
+    return render(request, 'editdata.html', {'form': form})
  
  
 def Data_mahasiswaUpdateView(request, pk):
@@ -103,7 +103,7 @@ def Data_mahasiswaUpdateView(request, pk):
         if form.is_valid():
             form.save()
             return redirect('Data_mahasiswa_change', pk=pk)
-    return render(request, 'tambahdata.html', {'form': form})
+    return render(request, 'editdata.html', {'form': form})
  
  #AJAX
 def load_units(request):
