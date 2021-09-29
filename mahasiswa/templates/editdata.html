@@ -16,7 +16,7 @@
 	<br/>
 	<br/>
 	<div class="container">
-        {% if form.errors %}
+        <!-- {% if form.errors %}
             {% for field in form %}
                 {% for error in field.errors %}
                     <div class="alert alert-danger">
@@ -29,10 +29,10 @@
                     <strong>{{ error|escape }}</strong>
                 </div>
             {% endfor %}
-        {% endif %}
+        {% endif %}  -->
 		<form method="POST" enctype="multipart/form-data" id="formmhs" data-units-url="{% url 'ajax_load_units' %}">
             {% csrf_token %}  
-            <table style="margin:20px auto; width: 25%;">
+            <table style="margin:30px auto; width: 75%;">
                 <tr>
                     <td>NPM</td>
                     <td>
@@ -56,11 +56,11 @@
                 <tr>
                     <td>Jenis Kelamin</td>
                     <td>
-                        <input type="radio" id="laki" name="jenisk" value="Laki-laki">
+                        <!-- <input type="radio" id="laki" name="jenisk" value="Laki-laki">
                         <label for="Laki-laki">Laki-laki</label>
-                        <input type="radio" id="perempuan" name="jenisk" value="Perempuan">
-                        <label for="Perempuan">Perempuan</label>
-
+                        <input type="radio" id="perempuan" name="jenisk" value="Perempuan"> 
+                        <label for="Perempuan">Perempuan</label> -->
+                        {{ form.jenisk }}
                     </td>
                 </tr>
                 <tr>
@@ -78,7 +78,7 @@
                 <tr>
                     <td>Unit </td>
                     <td>
-                        <!-- <select id="unitddl">
+                        <!-- <select id="id_unit" name="unit">
                             <option disabled selected="true"> --unit-- </option>
                             {% for unit in dataunit %}
                             <option value="{{unit.id}}" name="Unit">{{unit.nama}}</option>
@@ -92,13 +92,17 @@
                     <td>
                         {% if mhs.foto %}
                             <img src="{{ mhs.foto.url }}" class="img-responsive" style="width:45%">
-                        {% endif %}       
+                        {% endif %}   
+                        <br>
+                            
                      <input type="file" name="foto">
                     </td>
                 </tr>
-                    <td></td>
+                <tr>
+                    <td><br></td>
+                </tr>
                     <td><input type="button" onclick = "window.history.back()" value="<< kembali" class="btn btn-dark"></td>
-                    <td><input type="submit" value="Simpan" class="btn btn-primary"></td>
+                    <td><input type="submit" value="Simpan" class="btn btn-primary" ></td>
     
                 </tr>
             </table>

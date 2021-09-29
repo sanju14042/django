@@ -13,8 +13,8 @@
 	<br/>
 	<div class="container">
         <a href="/tambah" class="btn btn-primary">Add New Record</a>
-        <a href="/drop" class="btn btn-secondary">DropDown</a>
-        <a href="/tambahdata" class="btn btn-secondary">Django form</a>
+        <!-- <a href="/drop" class="btn btn-secondary">DropDown</a>
+        <a href="/tambahdata" class="btn btn-secondary">Django form</a> -->
 
         <br>
         <br>
@@ -44,7 +44,7 @@
                     <td>{{mahasiswa.unit}}</td>
                     <td>
                         
-                        <img src="media/{{mahasiswa.foto}}" class="img-responsive" style="width:20%">
+                        <img src="media/{{mahasiswa.foto}}" class="img-responsive" style="width:50%">
                     </td>
                     <td>
                         <input type="button" class="btn btn-warning" onclick="location.href='/editdata/{{mahasiswa.npm}}';" value=" Edit" />
