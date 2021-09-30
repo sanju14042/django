@@ -2,6 +2,7 @@
 from django import forms
 from django.db.models import fields
 from django.db.models.fields import files
+from django.forms import widgets
 from .models import Data_mahasiswa, Unit
 
 class BiodataMhs(forms.ModelForm):
@@ -26,6 +27,7 @@ class BiodataMhs(forms.ModelForm):
             }
             
         }
+        widgets = {'jenisk':forms.RadioSelect}
     def  __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['unit'].queryset = Unit.objects.none()

@@ -29,10 +29,10 @@ class Data_mahasiswa(models.Model):
     tgl_lahir = models.DateField(blank=True, null=True)
     alamat = models.CharField(max_length=200, blank=True, null=True)
     sex_choices = (
-        ('Laki-laki', 'Laki-laki',),
-        ('Perempuan', 'Perempuan',),
+        ('Laki-laki', 'Laki-laki'),
+        ('Perempuan', 'Perempuan'),
         )
-    jenisk = models.CharField(max_length=12, choices=sex_choices,blank=True, null=True)
+    jenisk = models.CharField(max_length=12, choices=sex_choices, blank=True, null=True)
     pekerjaan = models.ForeignKey(Pekerjaan, on_delete=models.SET_NULL, blank=True, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, blank=True, null=True)
     foto = models.ImageField(upload_to='images/',  validators=[validate_file_size])
